@@ -15,7 +15,6 @@ class Deck {
         initializeDeck();
     }
 
-    // Creates the 52 cards with their proper values, colors, and symbols
     private void initializeDeck() {
         String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
         String[] symbols = {"♥", "♦", "♣", "♠"};
@@ -24,7 +23,6 @@ class Deck {
 
         for (int i = 0; i < suits.length; i++) {
             for (int j = 0; j < ranks.length; j++) {
-                // Values are j + 2 (so "2" is 2, "A" is 14)
                 cards.add(new Card(suits[i], ranks[j], j + 2, symbols[i], colors[i]));
             }
         }
@@ -34,7 +32,6 @@ class Deck {
         Collections.shuffle(cards);
     }
 
-    // Splits the 52 cards evenly between two players
     public void deal(Player p1, Player p2) {
         for (int i = 0; i < cards.size(); i++) {
             if (i % 2 == 0) {
