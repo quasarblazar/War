@@ -11,13 +11,11 @@ class WarGameLogic {
     private final Player p1;
     private final Player p2;
     
-    // Variables exposed so Partner 2 (GUI) can read them and update the screen
     public Card currentP1Card;
     public Card currentP2Card;
     public String statusMessage;
     public boolean gameOver;
-    public int warLootSize; // Keeps track of how many cards are at stake in a war
-
+    public int warLootSize; 
     public WarGameLogic(Player p1, Player p2) {
         this.p1 = p1;
         this.p2 = p2;
@@ -38,7 +36,6 @@ class WarGameLogic {
         warLootSize = 0;
     }
 
-    // Called when the user clicks the 'Draw' button
     public void playTurn() {
         if (gameOver) return;
 
@@ -47,20 +44,15 @@ class WarGameLogic {
         executeBattle(loot, false);
     }
 
-    // Recursive method that handles normal turns and Ties (Wars)
     private void executeBattle(List<Card> loot, boolean isWar) {
-        // 1. Check if anyone has lost before drawing
         if (checkGameOver()) return;
 
-        // 2. Both players draw their top card
         currentP1Card = p1.drawTopCard();
         currentP2Card = p2.drawTopCard();
         
-        // Add drawn cards to the "loot" pile (the cards the winner will take)
         if (currentP1Card != null) loot.add(currentP1Card);
         if (currentP2Card != null) loot.add(currentP2Card);
 
-        // Safety check in case someone ran out of cards mid-draw
         if (currentP1Card == null || currentP2Card == null) {
             checkGameOver();
             return;
@@ -68,7 +60,6 @@ class WarGameLogic {
 
         warLootSize = loot.size();
 
-        // 3. Compare values
         if (currentP1Card.getValue() > currentP2Card.getValue()) {
             p1.addCardsToBottom(loot);
             statusMessage = (isWar ? "" : "") + p1.getName() + " wins the round";
@@ -78,18 +69,15 @@ class WarGameLogic {
             statusMessage = (isWar ? " " : "") + p2.getName() + " wins the round";
         } 
         else {
-            // TIE! IT IS TIME FOR WAR
             handleWar(loot);
         }
         
-        // Final check to see if that turn ended the game
         checkGameOver();
     }
 
     private void handleWar(List<Card> loot) {
         statusMessage = "Both players drew " + currentP1Card.getRank() + "";
         
-        // In war, each player puts up to 3 cards face down into the loot pile
         for (int i = 0; i < 3; i++) {
             if (p1.getCardCount() > 1) loot.add(p1.drawTopCard());
             if (p2.getCardCount() > 1) loot.add(p2.drawTopCard());
@@ -97,8 +85,7 @@ class WarGameLogic {
         
         warLootSize = loot.size();
 
-        // The next click will resolve the war via executeBattle again.
-        // For simplicity in this GUI version, we auto-resolve the war instantly.
+ 
         executeBattle(loot, true); 
     }
 
