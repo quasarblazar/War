@@ -10,7 +10,6 @@ import java.util.List;
 
 public class WarGameApp {
     public static void main(String[] args) {
-        // Swing applications should run on the Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
             WarGUI gui = new WarGUI();
             gui.setVisible(true);
