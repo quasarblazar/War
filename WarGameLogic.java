@@ -33,7 +33,7 @@ class WarGameLogic {
         
         currentP1Card = null;
         currentP2Card = null;
-        statusMessage = "Game Started! Click Draw to play a turn.";
+        statusMessage = "Game Start";
         gameOver = false;
         warLootSize = 0;
     }
@@ -71,11 +71,11 @@ class WarGameLogic {
         // 3. Compare values
         if (currentP1Card.getValue() > currentP2Card.getValue()) {
             p1.addCardsToBottom(loot);
-            statusMessage = (isWar ? "WAR WON! " : "") + p1.getName() + " wins the round!";
+            statusMessage = (isWar ? "" : "") + p1.getName() + " wins the round";
         } 
         else if (currentP2Card.getValue() > currentP1Card.getValue()) {
             p2.addCardsToBottom(loot);
-            statusMessage = (isWar ? "WAR WON! " : "") + p2.getName() + " wins the round!";
+            statusMessage = (isWar ? " " : "") + p2.getName() + " wins the round";
         } 
         else {
             // TIE! IT IS TIME FOR WAR
@@ -87,7 +87,7 @@ class WarGameLogic {
     }
 
     private void handleWar(List<Card> loot) {
-        statusMessage = "WAR! Both players drew " + currentP1Card.getRank() + "!";
+        statusMessage = "Both players drew " + currentP1Card.getRank() + "";
         
         // In war, each player puts up to 3 cards face down into the loot pile
         for (int i = 0; i < 3; i++) {
@@ -104,11 +104,11 @@ class WarGameLogic {
 
     private boolean checkGameOver() {
         if (p1.hasLost()) {
-            statusMessage = p2.getName() + " WINS THE GAME!";
+            statusMessage = p2.getName() + " WINS ";
             gameOver = true;
             return true;
         } else if (p2.hasLost()) {
-            statusMessage = p1.getName() + " WINS THE GAME!";
+            statusMessage = p1.getName() + " WINS ";
             gameOver = true;
             return true;
         }
