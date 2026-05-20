@@ -14,7 +14,6 @@ class WarGUI extends JFrame {
     private final Player p1;
     private final Player p2;
 
-    // UI Components
     private JLabel p2NameLabel, p1NameLabel;
     private JLabel p2CountLabel, p1CountLabel;
     private JLabel statusLabel;
@@ -32,7 +31,6 @@ class WarGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        // White background
         JPanel mainContainer = new JPanel(new BorderLayout(10, 10));
         mainContainer.setBackground(Color.WHITE);
         mainContainer.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -50,7 +48,7 @@ class WarGUI extends JFrame {
         topPanel.setOpaque(false);
         
         p2NameLabel = new JLabel(p2.getName(), SwingConstants.CENTER);
-        p2NameLabel.setForeground(Color.BLACK); // Dark text on white background
+        p2NameLabel.setForeground(Color.BLACK); 
         p2NameLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         
         p2CountLabel = new JLabel("Cards: 26", SwingConstants.CENTER);
@@ -73,7 +71,7 @@ class WarGUI extends JFrame {
         centerPanel.add(p2CardPanel, gbc);
 
         statusLabel = new JLabel("VS", SwingConstants.CENTER);
-        statusLabel.setForeground(Color.BLACK); // Dark text on white background
+        statusLabel.setForeground(Color.BLACK); 
         statusLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
         gbc.gridx = 0; gbc.gridy = 1;
         centerPanel.add(statusLabel, gbc);
@@ -93,7 +91,7 @@ class WarGUI extends JFrame {
         infoPanel.setOpaque(false);
         
         p1NameLabel = new JLabel(p1.getName(), SwingConstants.CENTER);
-        p1NameLabel.setForeground(Color.BLACK); // Dark text on white background
+        p1NameLabel.setForeground(Color.BLACK); 
         p1NameLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         
         p1CountLabel = new JLabel("Cards: 26", SwingConstants.CENTER);
@@ -103,7 +101,6 @@ class WarGUI extends JFrame {
         infoPanel.add(p1NameLabel);
         infoPanel.add(p1CountLabel);
 
-        // Dark button so it's visible on white background
         drawButton = new JButton("DRAW CARDS");
         drawButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
         drawButton.setBackground(Color.BLACK);
