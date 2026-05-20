@@ -9,11 +9,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 class Card {
-    private final String suit;   // Hearts, Diamonds, Clubs, Spades
-    private final String rank;   // 2, 3... J, Q, K, A
-    private final int value;     // 2-14 (Used to determine who wins the round)
-    private final String symbol; // Unicode symbol (♥, ♦, ♣, ♠) for the GUI
-    private final Color color;   // Red or Black
+    private final String suit;   
+    private final String rank; 
+    private final int value;     
+    private final String symbol; 
+    private final Color color;   
 
     public Card(String suit, String rank, int value, String symbol, Color color) {
         this.suit = suit;
@@ -23,7 +23,6 @@ class Card {
         this.color = color;
     }
 
-    // Getters allowing other classes to read the card's data
     public int getValue() { return value; }
     public String getRank() { return rank; }
     public String getSymbol() { return symbol; }
